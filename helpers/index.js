@@ -78,7 +78,7 @@
   helpers.simpleHttpRequest = function(url, res, next) {
     axios.get(url)
       .then(function(response) {
-        helpers.respondSuccessBody(res, response.data);
+        helpers.respondSuccessBody(res, JSON.stringify(response.data));
       })
       .catch(function(error) {
         return next(error);
