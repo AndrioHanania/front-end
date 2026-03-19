@@ -75,15 +75,20 @@
    *   });
    * });
    */
-  helpers.simpleHttpRequest = function(url, res, next) {
-    axios.get(url)
-      .then(function(response) {
-        helpers.respondSuccessBody(res, JSON.stringify(response.data));
-      })
-      .catch(function(error) {
-        return next(error);
-      });
-  }
+    helpers.simpleHttpRequest = function(url, res, next) {
+      axios.get(url)
+        .then(function(response) {
+          var data = response.data;
+          if (typeof data === 'object') {
+            data = JSON.stringify(data);
+          }
+          helpers.respondSuccessBody(res, data);
+        })
+        .catch(function(error) {
+          return next(error);
+        });
+    }
+
 
   /* TODO: Add documentation */
   helpers.getCustomerId = function(req, env) {
