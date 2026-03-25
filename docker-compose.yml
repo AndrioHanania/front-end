@@ -1,0 +1,6 @@
+services:
+  frontend:
+    build: .
+    image: andriohanania/frontend:v1
+    ports:
+      - 8079
